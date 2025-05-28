@@ -11,7 +11,7 @@ use App\Http\Controllers\BarangController;
 Route::post('/addbarang',[BarangController::class, 'createB']);
 Route::put('/editbarang/{id}',[BarangController::class, 'updateB']);
 Route::delete('/delbarang/{id}',[BarangController::class, 'deleteB']);
-Route::get('/showbarang/{id}',[BarangController::class, 'show']);
+Route::middleware('auth:sanctum')->get('/showbarang/{id}',[BarangController::class, 'show']);
 Route::get('/showbarang',[BarangController::class, 'showall']);
 
 use App\Http\Controllers\TransaksiController;
@@ -26,6 +26,11 @@ Route::post('/pembayaran', [PembayaranController::class, 'addP']);
 Route::get('/pembayaran', [PembayaranController::class, 'getAllP']);
 Route::get('/pembayaran/{id}', [PembayaranController::class, 'getByIdP']);
 Route::delete('/pembayaran/{id}', [PembayaranController::class, 'deleteP']);
+
+use App\Http\Controllers\LoginController;
+Route::post('/login', [LoginController::class, 'login']);
+
+
 
 // routes/api.php
 Route::get('/test', function () {
